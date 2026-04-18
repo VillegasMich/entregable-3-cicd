@@ -2,7 +2,7 @@
 
 terraform {
   required_version = ">= 1.6.0"
-  backend "s3" {}
+  # backend "s3" {}
 
   required_providers {
     aws = {
@@ -143,10 +143,10 @@ resource "aws_ecs_task_definition" "app" {
   family                   = "calculadora-${var.environment_name}-task"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = "256"  # 0.25 vCPU (minimo Fargate)
-  memory                   = "512"  # 0.5 GB (minimo Fargate)
-  task_role_arn            = var.lab_role_arn       # Rol para permisos DENTRO del contenedor
-  execution_role_arn       = var.lab_role_arn       # Rol para que ECS/Fargate pueda descargar imagen, enviar logs, etc.
+  cpu                      = "256"            # 0.25 vCPU (minimo Fargate)
+  memory                   = "512"            # 0.5 GB (minimo Fargate)
+  task_role_arn            = var.lab_role_arn # Rol para permisos DENTRO del contenedor
+  execution_role_arn       = var.lab_role_arn # Rol para que ECS/Fargate pueda descargar imagen, enviar logs, etc.
 
   container_definitions = jsonencode([
     {
