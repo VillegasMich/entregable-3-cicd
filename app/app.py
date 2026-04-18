@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-only-insecure-key")
 
 
 OPERACIONES = {
@@ -40,6 +41,11 @@ def calcular():
 
     return render_template("index.html", resultado=resultado)
 
+@app.route("/health")
+def health():
+    return "OK", 200
+
 
 if __name__ == "__main__":  # pragma: no cover
-    app.run(debug=False, port=5000, host="127.0.0.1")
+    app_port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, port=app_port, host="127.0.0.1")
