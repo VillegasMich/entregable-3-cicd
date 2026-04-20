@@ -2,7 +2,7 @@
 
 import os
 from flask import Flask, render_template, request
-from .calculadora import sumar, restar, multiplicar, dividir
+from .calculadora import sumar, restar, multiplicar, dividir, potencia, modulo
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-only-insecure-key")
@@ -13,6 +13,8 @@ OPERACIONES = {
     "restar": restar,
     "multiplicar": multiplicar,
     "dividir": dividir,
+    "potencia": potencia,
+    "modulo": modulo,
 }
 
 
