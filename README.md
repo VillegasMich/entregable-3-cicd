@@ -1,3 +1,12 @@
+- Repo: https://github.com/VillegasMich/entregable-3-cicd
+- Sonar: https://sonarcloud.io/project/overview?id=VillegasMich_entregable-3-cicd
+- Imagen: villegasmich/entregable-3-cicd
+
+
+- ALB URL Staging: http://calculadora-staging-alb-462007611.us-east-1.elb.amazonaws.com/
+- ALB URL Production: http://calculadora-production-alb-480919015.us-east-1.elb.amazonaws.com/
+
+
 1. Explica brevemente el flujo de trabajo nuevo completo que implementaste con Terraform (commit -> CI -> Build/Push Imagen -> Deploy TF Staging -> Update Service Staging -> Test Staging -> Deploy TF Prod -> Update Service Prod -> Smoke Test Prod). Sé específico sobre qué artefacto se mueve, qué hace cada job principal, y qué valida cada tipo de prueba.
 
 Tenemos que el flujo arranca con un push al main. Aquí se ejecuta el job de CI "build-test-publish" que lo que hace básicamente es correr las pruebas unitarias y los análisis estáticos de código con flake8, Pylint… Una vez todo lo anterior pasa ok, se hace build y se publica la imagen de Docker etiquetada con el SHA. El artefacto en este caso seria esa imagen de Docker que queda en DockerHub con su tag.
